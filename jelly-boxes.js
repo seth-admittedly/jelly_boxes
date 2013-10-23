@@ -10,6 +10,10 @@
       return;
     }
 
+    if(that.width() !== that.height()) {
+      return;
+    }
+
     that.empty();
 
     var settings = $.extend({

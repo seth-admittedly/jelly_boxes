@@ -1,6 +1,6 @@
 #JellyBoxes
 
-A small jQuery extension that adds a function, .jellyBoxes([options]), to any positioned (non-static) DOM element. JellyBoxes empties the element, then fills it with a number of randomly-colored squares that animate into random positions within a diamond on setup, and on every mouseover after that.
+A small jQuery extension that adds a function, .jellyBoxes([options]), to any positioned (non-static), square DOM element. JellyBoxes empties the element, then fills it with a number of randomly-colored squares that animate into random positions within a diamond on setup, and on every mouseover after that.
 
 It's probably easier to just see it in action [here](http://www.robhdawson.com/jelly_boxes/). It's not exactly practical, but I'd like to think it's pretty neat-looking.
 
