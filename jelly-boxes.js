@@ -24,7 +24,8 @@
       "#e74c3c", "#34495e"],
       grid: 24,
       easing: "swing",
-      duration:800
+      duration: 800,
+      density: 0.6,
     }, options);
 
     var boxSize = settings.boxSize = Math.floor(that.width() / settings.grid);
@@ -32,7 +33,36 @@
 
     that.css({width: size, height: size})
 
-    var count = (settings.grid * settings.grid) / 3;
+    var positions = [];
+
+    var lowMid = settings.grid/2 - 2;
+    var highMid = settings.grid - (settings.grid/2 - 1)
+
+    var unacceptableDiffs = [];
+    var unacceptableSums = [];
+
+    for(var i=highMid;i<settings.grid;i++) {
+      unacceptableDiffs.push(i);
+      unacceptableSums.push(i - 1 + settings.grid);
+    }
+
+    for(var i=lowMid;i>=0;i--) {
+      unacceptableSums.push(i);
+    }
+
+    for(var i=0;i<settings.grid;i++) {
+      for(var j=0;j<settings.grid;j++) {
+        if(
+          unacceptableDiffs.indexOf(Math.abs(i - j)) === -1 &&
+          unacceptableSums.indexOf(i + j) === -1
+        ) {
+          positions.push([i, j]);
+        }
+      }
+    }
+
+    var count = positions.length * settings.density;
+
     var middle = (size/2) - (boxSize/2)
 
     for(var i=0;i<count;i++) {
@@ -51,41 +81,13 @@
 
     var boxes = that.find(".jellybox");
 
-    jellyOut(boxes, settings, that);
+    jellyOut(boxes, settings, positions, that);
 
     return that;
   }
 
-  function jellyOut(boxes, settings, $root) {
+  function jellyOut(boxes, settings, positions, $root) {
     $root.unbind();
-
-    var positions = [];
-
-    var lowMid = settings.grid/2 - 2;
-    var highMid = settings.grid - (settings.grid/2 - 1)
-
-    var unacceptableDiffs = [];
-    var unacceptableSums = [];
-
-    for(var i=highMid;i<settings.grid;i++) {
-      unacceptableDiffs.push(i);
-      unacceptableSums.push(i + settings.grid);
-    }
-
-    for(var i=lowMid;i>=0;i--) {
-      unacceptableSums.push(i);
-    }
-
-    for(var i=0;i<settings.grid;i++) {
-      for(var j=0;j<settings.grid;j++) {
-        if(
-          unacceptableDiffs.indexOf(Math.abs(i - j)) === -1 &&
-          unacceptableSums.indexOf(i + j) === -1
-        ) {
-          positions.push([i, j]);
-        }
-      }
-    }
 
     var taken = [];
 
@@ -101,7 +103,7 @@
           if(i === boxes.length - 1) {
             var callback = function() {
               $root.mouseover(function() {
-                jellyOut(boxes, settings, $root);
+                jellyOut(boxes, settings, positions, $root);
               });
             }
           } else {
