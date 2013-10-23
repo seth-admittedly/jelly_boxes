@@ -14,7 +14,9 @@
       "#e67e22", "#f1c40f",
       "#e74c3c", "#34495e"
       ],
-      grid: 24
+      grid: 24,
+      easing: "swing",
+      duration:400
     }, options);
 
     var boxSize = settings.boxSize = Math.floor(that.width() / settings.grid);
@@ -101,7 +103,7 @@
           $box.animate({
             top: position[0] * settings.boxSize,
             left: position[1] * settings.boxSize
-          }, 3000, "easeOutElastic", callback);
+          }, settings.duration, settings.easing, callback);
 
           break;
         }
