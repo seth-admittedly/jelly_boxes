@@ -17,11 +17,10 @@
       "#27ae60", "#2ecc71",
       "#2980b9", "#3498db",
       "#e67e22", "#f1c40f",
-      "#e74c3c", "#34495e"
-      ],
+      "#e74c3c", "#34495e"],
       grid: 24,
       easing: "swing",
-      duration:400
+      duration:800
     }, options);
 
     var boxSize = settings.boxSize = Math.floor(that.width() / settings.grid);
