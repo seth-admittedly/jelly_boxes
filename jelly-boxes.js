@@ -5,6 +5,11 @@
 
   $.fn.jellyBoxes = function(options) {
     var that = this;
+
+    if(that.css("position") === "static") {
+      return;
+    }
+
     that.empty();
 
     var settings = $.extend({
