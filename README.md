@@ -14,4 +14,4 @@ The options it takes is a plain JavaScript object, with the following properties
 
 !["#27ae60", "#2ecc71", "#2980b9", "#3498db", "#e67e22", "#f1c40f", "#e74c3c", "#34495e"](https://raw.github.com/robhdawson/jelly_boxes/master/colors.png)
 
-Demo uses the [jQuery Easing Plugin](http://gsgd.co.uk/sandbox/jquery/easing/)'s "easeOutElastic" function.
+Demo uses easing functions from the [jQuery Easing Plugin](http://gsgd.co.uk/sandbox/jquery/easing/).

@@ -12,6 +12,15 @@
     position:relative;
   }
 
+  .choosers {
+    width:600px;
+    margin:10px auto;
+  }
+
+  label {
+    margin:0 10px;
+  }
+
   h1 {
     font-family:sans-serif;
     text-align:center;
@@ -38,11 +47,81 @@
 <body>
   <h1>JellyBoxes</h1>
   <div id="container">sdfsdf</div>
+  <div class="choosers">
+    <label>Grid:
+      <select id="grid">
+        <option value="6">6</option>
+        <option value="12">12</option>
+        <option value="24" selected>24</option>
+        <option value="36">36</option>
+      </select>
+    </label>
+
+    <label>Density:
+      <select id="density">
+        <option value="0.2">0.2</option>
+        <option value="0.4">0.4</option>
+        <option value="0.6" selected>0.6</option>
+        <option value="0.8">0.8</option>
+        <option value="1">1.0</option>
+      </select>
+    </label>
+
+    <label>Duration:
+      <select id="duration">
+        <option value="100">100</option>
+        <option value="400" selected>400</option>
+        <option value="1000">1000</option>
+        <option value="2000">2000</option>
+        <option value="3000">3000</option>
+      </select>
+    </label>
+
+    <label>Easing:
+      <select id="easing">
+        <option value="linear">linear</option>
+        <option value="swing">swing</option>
+        <option value="easeOutBack" selected>easeOutBack</option>
+        <option value="easeOutElastic">easeOutElastic</option>
+      </select>
+    </label>
+  </div>
   <a href="https://github.com/robhdawson/jelly_boxes">GitHub</a>
 
   <script>
   $(document).ready(function() {
-    $("#container").jellyBoxes({duration: 4000, easing: "easeOutElastic"})
+    var density = 0.6;
+    var colors = ["#27ae60", "#2ecc71", "#2980b9", "#3498db", "#e67e22", "#f1c40f", "#e74c3c", "#34495e"];
+    var duration = 400;
+    var easing = "easeOutBack";
+    var grid = 24;
+
+    function render() {
+      $("#container").jellyBoxes({duration: duration, easing: easing, colors: colors, density: density, grid: grid})
+    }
+
+
+    $("#density").change(function(event) {
+      density = $(event.target).val();
+      render();
+    });
+
+    $("#duration").change(function(event) {
+      duration = parseInt($(event.target).val());
+      render();
+    });
+
+    $("#grid").change(function(event) {
+      grid = parseInt($(event.target).val());
+      render();
+    });
+
+    $("#easing").change(function(event) {
+      easing = $(event.target).val();
+      render();
+    });
+
+    render();
   });
   </script>
 </body>
