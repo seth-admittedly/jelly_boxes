@@ -76,7 +76,7 @@
         <option value="easeOutElastic">easeOutElastic</option>
       </select>
     </label>
-    
+
     <br>
     <br>
 
@@ -97,7 +97,7 @@
         <option value="2">All Black</option>
       </select>
     </label>
-    
+
     <label>Border Radius:
       <select id="borderRadius">
         <option value="0">0</option>
@@ -113,7 +113,7 @@
   $(document).ready(function() {
     var allColors = [
     ["#27ae60", "#2ecc71", "#2980b9", "#3498db", "#e67e22", "#f1c40f", "#e74c3c", "#34495e"],
-    ["#ad0b05", "#0f0f0f", "#3e3e3e", "#f06d06", "#e74c3c", "#d35400"],
+    ["#ad0b05", "#0f0f0f", "#3e3e3e", "#f06d06", "#d35400"],
     ["#000"]
     ]
     var density = 0.6;
@@ -147,7 +147,7 @@
       easing = $(event.target).val();
       render();
     });
-    
+
     $("#borderRadius").change(function(event) {
       borderRadius = $(event.target).val();
       render();
