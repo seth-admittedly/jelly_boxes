@@ -26,6 +26,7 @@
       easing: "swing",
       duration: 800,
       density: 0.6,
+      borderRadius: "20%"
     }, options);
 
     var boxSize = settings.boxSize = Math.floor(that.width() / settings.grid);
@@ -73,7 +74,8 @@
         top: middle,
         left: middle,
         height: boxSize,
-        width: boxSize
+        width: boxSize,
+        borderRadius: settings.borderRadius
       });
 
       that.append(box);

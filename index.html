@@ -13,12 +13,13 @@
   }
 
   .choosers {
-    width:650px;
+    width:500px;
     margin:10px auto;
+    text-align:center;
   }
 
   label {
-    margin:0 6pxpx;
+    margin:6px;
   }
 
   h1 {
@@ -57,16 +58,6 @@
       </select>
     </label>
 
-    <label>Density:
-      <select id="density">
-        <option value="0.2">0.2</option>
-        <option value="0.4">0.4</option>
-        <option value="0.6" selected>0.6</option>
-        <option value="0.8">0.8</option>
-        <option value="1">1.0</option>
-      </select>
-    </label>
-
     <label>Duration:
       <select id="duration">
         <option value="100">100</option>
@@ -85,12 +76,34 @@
         <option value="easeOutElastic">easeOutElastic</option>
       </select>
     </label>
+    
+    <br>
+    <br>
+
+    <label>Density:
+      <select id="density">
+        <option value="0.2">0.2</option>
+        <option value="0.4">0.4</option>
+        <option value="0.6" selected>0.6</option>
+        <option value="0.8">0.8</option>
+        <option value="1">1.0</option>
+      </select>
+    </label>
 
     <label>Colors:
       <select id="colors">
-        <option value="0">Standard</option>
+        <option value="0" selected>Standard</option>
         <option value="1">Halloween</option>
         <option value="2">All Black</option>
+      </select>
+    </label>
+    
+    <label>Border Radius:
+      <select id="borderRadius">
+        <option value="0">0</option>
+        <option value="20%" selected>20%</option>
+        <option value="40%">40%</option>
+        <option value="50%">50%</option>
       </select>
     </label>
   </div>
@@ -108,9 +121,10 @@
     var duration = 400;
     var easing = "easeOutBack";
     var grid = 12;
+    var borderRadius = "20%";
 
     function render() {
-      $("#container").jellyBoxes({duration: duration, easing: easing, colors: colors, density: density, grid: grid})
+      $("#container").jellyBoxes({duration: duration, easing: easing, colors: colors, density: density, grid: grid, borderRadius: borderRadius})
     }
 
 
@@ -131,6 +145,11 @@
 
     $("#easing").change(function(event) {
       easing = $(event.target).val();
+      render();
+    });
+    
+    $("#borderRadius").change(function(event) {
+      borderRadius = $(event.target).val();
       render();
     });
 
