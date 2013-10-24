@@ -11,6 +11,7 @@ The options it takes is a plain JavaScript object, with the following properties
 - duration: a string or number that determines the length of the animation. (default: 800)
 - density: a number between 0 and 1, representing the percentage of available positions that will be filled by squares (default: 0.6)
 - borderRadius: a string to set the CSS border-radius property on all the squares (default: 20%)
+- shape: a string, either "diamond" or "square". Diamond only works with even-numbered grids. (default: "diamond")
 - colors: an array of colors. (defaults below)
 
 !["#27ae60", "#2ecc71", "#2980b9", "#3498db", "#e67e22", "#f1c40f", "#e74c3c", "#34495e"](https://raw.github.com/robhdawson/jelly_boxes/master/colors.png)

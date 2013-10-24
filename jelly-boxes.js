@@ -4,6 +4,11 @@
   }
 
   $.fn.jellyBoxes = function(options) {
+    var options = options;
+    if(options && ["diamond","square"].indexOf(options.shape) === -1) {
+      options.shape = "diamond";
+    }
+
     var that = this;
 
     if(that.css("position") === "static") {
@@ -26,7 +31,8 @@
       easing: "swing",
       duration: 800,
       density: 0.6,
-      borderRadius: "20%"
+      borderRadius: "20%",
+      shape: "diamond"
     }, options);
 
     var boxSize = settings.boxSize = Math.floor(that.width() / settings.grid);
@@ -42,13 +48,16 @@
     var unacceptableDiffs = [];
     var unacceptableSums = [];
 
-    for(var i=highMid;i<settings.grid;i++) {
-      unacceptableDiffs.push(i);
-      unacceptableSums.push(i - 1 + settings.grid);
-    }
 
-    for(var i=lowMid;i>=0;i--) {
-      unacceptableSums.push(i);
+    if(settings.shape === "diamond") {
+      for(var i=highMid;i<settings.grid;i++) {
+        unacceptableDiffs.push(i);
+        unacceptableSums.push(i - 1 + settings.grid);
+      }
+
+      for(var i=lowMid;i>=0;i--) {
+        unacceptableSums.push(i);
+      }
     }
 
     for(var i=0;i<settings.grid;i++) {

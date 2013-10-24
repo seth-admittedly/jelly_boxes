@@ -13,7 +13,7 @@
   }
 
   .choosers {
-    width:500px;
+    width:600px;
     margin:10px auto;
     text-align:center;
   }
@@ -49,6 +49,13 @@
   <h1>JellyBoxes</h1>
   <div id="container">sdfsdf</div>
   <div class="choosers">
+    <label>Shape:
+      <select id="shape">
+        <option value="diamond">Diamond</option>
+        <option value="square">Square</option>
+      </select>
+    </label>
+
     <label>Grid:
       <select id="grid">
         <option value="4">4</option>
@@ -129,14 +136,20 @@
     var easing = "easeOutBack";
     var grid = 12;
     var borderRadius = "20%";
+    var shape = "diamond";
 
     function render() {
-      $("#container").jellyBoxes({duration: duration, easing: easing, colors: colors, density: density, grid: grid, borderRadius: borderRadius})
+      $("#container").jellyBoxes({duration: duration, easing: easing, colors: colors, density: density, grid: grid, borderRadius: borderRadius, shape: shape})
     }
 
 
     $("#density").change(function(event) {
       density = $(event.target).val();
+      render();
+    });
+
+    $("#shape").change(function(event) {
+      shape = $(event.target).val();
       render();
     });
 
