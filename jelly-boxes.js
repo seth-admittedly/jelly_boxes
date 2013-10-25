@@ -3,6 +3,11 @@
     return array[Math.floor(Math.random() * array.length)];
   }
 
+  function randElWithIndex(array) {
+    var i = Math.floor(Math.random() * array.length);
+    return [array[i], i]
+  }
+
   $.fn.jellyBoxes = function(options) {
     var options = options;
     if(options && ["diamond","square"].indexOf(options.shape) === -1) {
@@ -76,7 +81,7 @@
     var middle = (size/2) - (boxSize/2)
 
     for(var i=0;i<count;i++) {
-      var box = $('<div class="jellybox"></div>')
+      var box = $('<div class="js-jellybox"></div>')
       box.css({
         position: "absolute",
         backgroundColor: randEl(settings.colors),
@@ -90,7 +95,7 @@
       that.append(box);
     }
 
-    var boxes = that.find(".jellybox");
+    var boxes = that.find(".js-jellybox");
 
     jellyOut(boxes, settings, positions, that);
 
@@ -100,35 +105,31 @@
   function jellyOut(boxes, settings, positions, $root) {
     $root.unbind();
 
-    var taken = [];
+    var untaken = jQuery.extend(true, [], positions);
+    //var taken = [];
 
     for(var i=0;i<boxes.length;i++) {
       var $box = $(boxes[i]);
+      var randPositionArr = randElWithIndex(untaken);
+      var position = randPositionArr[0];
+      var index = randPositionArr[1];
 
-      while(true){
-        var position = randEl(positions);
-
-        if (taken.indexOf(position.join(",")) === -1) {
-          taken.push(position.join(","));
-
-          if(i === boxes.length - 1) {
-            var callback = function() {
-              $root.mouseover(function() {
-                jellyOut(boxes, settings, positions, $root);
-              });
-            }
-          } else {
-            var callback = function() {};
-          }
-
-          $box.animate({
-            top: position[0] * settings.boxSize,
-            left: position[1] * settings.boxSize
-          }, settings.duration, settings.easing, callback);
-
-          break;
+      if(i === boxes.length - 1) {
+        var callback = function() {
+          $root.mouseover(function() {
+            jellyOut(boxes, settings, positions, $root);
+          });
         }
+      } else {
+        var callback = function() {};
       }
+
+      $box.animate({
+        top: position[0] * settings.boxSize,
+        left: position[1] * settings.boxSize
+      }, settings.duration, settings.easing, callback);
+
+      untaken.splice(index, 1);
     }
   }
 })(jQuery);
