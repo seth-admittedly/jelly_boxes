@@ -106,7 +106,6 @@
     $root.unbind();
 
     var untaken = jQuery.extend(true, [], positions);
-    //var taken = [];
 
     for(var i=0;i<boxes.length;i++) {
       var $box = $(boxes[i]);
