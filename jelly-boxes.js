@@ -85,8 +85,8 @@
       box.css({
         position: "absolute",
         backgroundColor: randEl(settings.colors),
-        top: middle,
-        left: middle,
+        top: 0,
+        left: 0,
         height: boxSize,
         width: boxSize,
         borderRadius: settings.borderRadius
@@ -123,10 +123,15 @@
         var callback = function() {};
       }
 
-      $box.animate({
-        top: position[0] * settings.boxSize,
-        left: position[1] * settings.boxSize
-      }, settings.duration, settings.easing, callback);
+      // $box.animate({
+      //   top: position[0] * settings.boxSize,
+      //   left: position[1] * settings.boxSize
+      // }, settings.duration, settings.easing, callback);
+      $box.css({
+        "-webkit-transition" : "-webkit-transform 0.5s ease",
+        "transform" : "translate3d(" + position[1]*settings.boxSize + "px," + position[0]*settings.boxSize + "px,0px)"
+      });
+      callback();
 
       untaken.splice(index, 1);
     }
